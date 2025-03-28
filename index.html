@@ -47,25 +47,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* overflow: hidden; */
+            padding: 15px;
         }
 
         #cont {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             box-shadow: 0 15px 10px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            padding: 30px;
             width: 90%;
             max-width: 500px;
             text-align: center;
             transition: all 0.3s ease;
-            overflow: hidden;
-            /* max-height: 90vh; */
         }
 
         #titel {
             color: #2c3e50;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-size: 2rem;
             letter-spacing: 1px;
         }
@@ -74,7 +72,7 @@
             display: flex;
             justify-content: space-between;
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         #w, #h {
@@ -85,6 +83,7 @@
         #w h2, #h h2 {
             color: #34495e;
             margin-bottom: 10px;
+            font-size: 1.2rem;
         }
 
         .in {
@@ -111,7 +110,7 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         #btn:hover {
@@ -128,19 +127,21 @@
         #contnv {
             opacity: 0;
             visibility: hidden;
-            max-height: 0;
-            overflow: auto;
+            height: 0;
             background-color: #ecf0f1;
             border-radius: 10px;
-            padding: 0 20px;
+            padding: 0;
+            margin-top: 0;
             transition: all 0.5s ease;
+            overflow: visible;
         }
 
         #contnv.show {
             opacity: 1;
             visibility: visible;
-            max-height: 300px;
+            height: auto;
             padding: 20px;
+            margin-top: 10px;
         }
 
         .inv {
@@ -149,62 +150,224 @@
         }
 
         #wnum, #idealDiff {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #3498db;
             font-weight: bold;
         }
 
+        #كتلة {
+            font-size: 1.3rem;
+        }
+
         #الوضع, #الفرق {
             margin-top: 15px;
+            font-size: 1.3rem;
         }
 
         #st, #idealDiffText {
             font-weight: bold;
         }
 
-        @media screen and (max-width: 600px) {
+        /* إضافة تنسيق زر تبديل وحدة الطول */
+        .height-unit-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
 
+        .unit-label {
+            margin: 0 10px;
+            color: #34495e;
+            font-weight: bold;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #bdc3c7;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #3498db;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        .height-with-unit {
+            position: relative;
+        }
+
+        #ideal-range {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #ideal-marker {
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background-color: #333;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        #current-marker {
+            position: absolute;
+            width: 8px;
+            height: 30px;
+            background-color: #e74c3c;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px;
+            z-index: 4;
+            transition: left 0.5s ease;
+        }
+
+        #ideal-zone {
+            position: absolute;
+            height: 100%;
+            background-color: #2ecc71;
+            top: 0;
+            left: 40%;
+            width: 20%;
+            z-index: 2;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        #idealDiffText {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
             #cont {
-                width: 85%;
-                padding: 20px;
-                max-height: 93vh; /* الحفاظ على التناسب مع الشاشة */
-                min-height: auto; /* السماح للحاوية بالتمدد حسب المحتوى */
-                margin-bottom: 10px;
+                width: 95%;
+                padding: 20px 15px;
+                margin: 10px 0;
+            }
+
+            #titel {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
             }
 
             #woh {
                 flex-direction: column;
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+
+            #w h2, #h h2 {
+                font-size: 1.1rem;
+                margin-bottom: 5px;
             }
 
             .in {
-                margin-bottom: 15px;
-                width: 85%;
-                font-size: 0.9rem; /* تصغير حجم الخط */
-            }
-
-            #titel {
-                font-size: 1.5rem; /* تصغير حجم العنوان */
+                height: 38px;
+                font-size: 0.9rem;
             }
 
             #btn {
-                position: relative;
-                top: -10px;
-                font-size: 0.9rem; /* تصغير حجم الزر */
                 padding: 10px 20px;
+                font-size: 0.9rem;
+                margin-bottom: 15px;
             }
 
             #contnv.show {
-                padding: 15px;
-                font-size: 0.9rem; /* تصغير حجم الخط في النتائج */
+                padding: 15px 10px;
             }
 
-            #wnum, #idealDiff {
-                font-size: 1rem; /* تصغير الأرقام الكبيرة */
+            #wnum {
+                font-size: 1.5rem;
             }
-            #contnv{
-                transform: scale(0.85);
-                position: relative;
-                top: -10px;
+
+            #كتلة {
+                font-size: 1.1rem;
+            }
+
+            #الوضع, #الفرق {
+                font-size: 1.1rem;
+                margin-top: 10px;
+            }
+
+            #idealDiffText {
+                font-size: 1rem;
+            }
+
+            .progress-labels {
+                font-size: 0.7rem;
+            }
+
+            .height-unit-container {
+                margin-top: 5px;
+            }
+
+            .toggle-switch {
+                width: 50px;
+                height: 26px;
+            }
+
+            .slider:before {
+                height: 18px;
+                width: 18px;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(24px);
             }
         }
     </style>
@@ -217,25 +380,69 @@
 
         <div id="woh">
             <div id="w">
-                <label for="white"><h2>الوزن</h2></label>
-                <input class="in" id="white" type="text">
+                <label for="white"><h2>الوزن (كجم)</h2></label>
+                <input class="in" id="white" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="أدخل الوزن بالكيلوجرام">
             </div>
 
             <div id="h">
                 <label for="height"><h2>الطول</h2></label>
-                <input class="in" id="height" type="text">
+                <div class="height-with-unit">
+                    <input class="in" id="height" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="أدخل الطول">
+                    <div class="height-unit-container">
+                        <span class="unit-label">سم</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="unit-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="unit-label">متر</span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <button id="btn"><h2>حساب</h2></button>
         <div id="contnv">
-            <h2 class="inv" id="كتلة">الكتلة: <samp id="wnum">24.555</samp></h2>
-            <h1 class="inv" id="الوضع">الحالة: <span id="st">سمنة درجة اولى</span></h1>
-            <h1 class="inv" id="الفرق">الوزن المثالي: <span id="idealDiffText">زيادة 5 كجم</span></h1>
+            <h2 class="inv" id="كتلة">مؤشر كتلة الجسم: <samp id="wnum">24.555</samp></h2>
+            <h1 class="inv" id="الوضع">الحالة: <span id="st">وزن طبيعي</span></h1>
+            
+            <div id="ideal-range">
+                <div id="ideal-zone"></div>
+                <div id="ideal-marker"></div>
+                <div id="current-marker"></div>
+            </div>
+            <div class="progress-labels">
+                <span>نحافة شديدة</span>
+                <span>نحافة</span>
+                <span>طبيعي</span>
+                <span>زائد</span>
+                <span>سمنة</span>
+            </div>
+            
+            <h1 class="inv" id="الفرق">الوزن المثالي: <span id="idealWeightRange">60-75 كجم</span></h1>
+            <h2 class="inv" id="idealDiffText">نقص 5 كجم للوصول للوزن المثالي</h2>
         </div>
     </div>
     
     <script>
+    // تهيئة قيمة وحدة الطول (افتراضياً بالسنتيمتر)
+    let isHeightInMeters = false;
+    
+    // دالة لتحويل الأرقام العربية إلى الإنجليزية
+    function convertArabicToEnglishNumbers(str) {
+        const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        
+        if (!str) return str;
+        
+        let result = str.toString();
+        for (let i = 0; i < arabicNumbers.length; i++) {
+            const arabicReg = new RegExp(arabicNumbers[i], 'g');
+            result = result.replace(arabicReg, englishNumbers[i]);
+        }
+        
+        return result;
+    }
+    
     function cancl_error(){
         const errorElement = document.getElementById("error-message");
         errorElement.style.animation = 'fadeOut 0.5s ease forwards';
@@ -267,6 +474,10 @@
             return false;
         }
 
+        // تحويل الأرقام العربية إلى إنجليزية قبل المعالجة
+        weight = convertArabicToEnglishNumbers(weight);
+        height = convertArabicToEnglishNumbers(height);
+
         const weightNum = parseFloat(weight);
         const heightNum = parseFloat(height);
 
@@ -284,15 +495,17 @@
             return false;
         }
 
-        if (weightNum > 300 || heightNum > 3) {
+        const maxHeight = isHeightInMeters ? 3 : 300;
+        
+        if (weightNum > 300 || heightNum > maxHeight) {
             if (weightNum > 300) weightInput.classList.add("input-error");
-            if (heightNum > 3) heightInput.classList.add("input-error");
+            if (heightNum > maxHeight) heightInput.classList.add("input-error");
             showError("الرجاء التأكد من صحة البيانات المدخلة");
             return false;
         }
 
         cancl_error();
-        return true;
+        return { weightNum, heightNum }; // إرجاع البيانات بعد التحويل
     }
 
     function calculateBMI() {
@@ -304,61 +517,144 @@
         const weight = weightInput.value.trim();
         const height = heightInput.value.trim();
 
-        if (!validateInputs(weight, height)) {
+        const validatedData = validateInputs(weight, height);
+        if (!validatedData) {
             resultContainer.classList.remove("show");
             return;
         }
 
-        const weightNum = parseFloat(weight);
-        const heightNum = parseFloat(height);
+        const weightNum = validatedData.weightNum;
+        let heightNum = validatedData.heightNum;
+        
+        // تحويل الطول إلى متر إذا كان مُدخلاً بالسنتيمتر
+        if (!isHeightInMeters) {
+            heightNum = heightNum / 100;
+        }
 
         const بمي = (weightNum / (heightNum * heightNum)).toFixed(2);
+        
+        // النطاق المثالي لمؤشر كتلة الجسم
         const idealMinBMI = 18.5;
         const idealMaxBMI = 24.9;
+        const idealMiddleBMI = (idealMinBMI + idealMaxBMI) / 2; // المنتصف
 
-        // حساب الوزن المثالي
+        // حساب الوزن المثالي (النطاق وأيضاً الوزن في المنتصف تماماً)
         const idealMinWeight = (idealMinBMI * (heightNum * heightNum)).toFixed(1);
         const idealMaxWeight = (idealMaxBMI * (heightNum * heightNum)).toFixed(1);
+        const idealMiddleWeight = (idealMiddleBMI * (heightNum * heightNum)).toFixed(1);
 
         resultContainer.classList.add("show");
         document.getElementById("wnum").textContent = بمي;
+        document.getElementById("idealWeightRange").textContent = `${idealMinWeight}-${idealMaxWeight} كجم`;
 
         let حالة = "";
         let backgroundGradient = "";
         let idealDiffText = "";
+        let markerPosition = 50; // موقع المؤشر (بالنسبة المئوية)
 
-        if (بمي < 18) {
+        // تصنيف أكثر دقة
+        if (بمي < 16) {
+            حالة = "نحافة شديدة";
+            backgroundGradient = "linear-gradient(135deg, #6A82FB 0%, #3F5EFB 100%)";
+            idealDiffText = `تحتاج لزيادة ${(idealMiddleWeight - weightNum).toFixed(1)} كجم للوصول للوزن المثالي`;
+            markerPosition = 5;
+        } else if (بمي < 18.5) {
             حالة = "نحافة";
             backgroundGradient = "linear-gradient(135deg, #a1e6ff 0%, #70b8e0 100%)";
-            idealDiffText = `زيادة ${(idealMinWeight - weightNum).toFixed(1)} كجم`;
+            idealDiffText = `تحتاج لزيادة ${(idealMiddleWeight - weightNum).toFixed(1)} كجم للوصول للوزن المثالي`;
+            markerPosition = 20;
         } else if (بمي <= 24.9) {
-            حالة = "وزن مثالي";
+            حالة = "وزن طبيعي";
             backgroundGradient = "linear-gradient(135deg, #90EE90 0%, #3CB371 100%)";
-            idealDiffText = "وزنك مثالي";
+            
+            if (بمي < idealMiddleBMI) {
+                idealDiffText = `تحتاج لزيادة ${(idealMiddleWeight - weightNum).toFixed(1)} كجم للوصول للوزن المثالي الأمثل`;
+                markerPosition = 40;
+            } else if (بمي > idealMiddleBMI) {
+                idealDiffText = `تحتاج لخسارة ${(weightNum - idealMiddleWeight).toFixed(1)} كجم للوصول للوزن المثالي الأمثل`;
+                markerPosition = 60;
+            } else {
+                idealDiffText = "وزنك مثالي بشكل تام";
+                markerPosition = 50;
+            }
         } else if (بمي <= 29.9) {
             حالة = "وزن زائد";
             backgroundGradient = "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)";
-            idealDiffText = `نقص ${(weightNum - idealMaxWeight).toFixed(1)} كجم`;
+            idealDiffText = `تحتاج لخسارة ${(weightNum - idealMiddleWeight).toFixed(1)} كجم للوصول للوزن المثالي`;
+            markerPosition = 75;
         } else if (بمي <= 34.9) {
             حالة = "سمنة درجة أولى";
             backgroundGradient = "linear-gradient(135deg, #FF6347 0%, #DC143C 100%)";
-            idealDiffText = `نقص ${(weightNum - idealMaxWeight).toFixed(1)} كجم`;
+            idealDiffText = `تحتاج لخسارة ${(weightNum - idealMiddleWeight).toFixed(1)} كجم للوصول للوزن المثالي`;
+            markerPosition = 85;
         } else if (بمي <= 39.9) {
             حالة = "سمنة درجة ثانية";
             backgroundGradient = "linear-gradient(135deg, #8B0000 0%, #4B0082 100%)";
-            idealDiffText = `نقص ${(weightNum - idealMaxWeight).toFixed(1)} كجم`;
+            idealDiffText = `تحتاج لخسارة ${(weightNum - idealMiddleWeight).toFixed(1)} كجم للوصول للوزن المثالي`;
+            markerPosition = 92;
         } else {
-            حالة = "سمنة خطيرة";
+            حالة = "سمنة مفرطة";
             backgroundGradient = "linear-gradient(135deg, #000000 0%, #434343 100%)";
-            idealDiffText = `نقص ${(weightNum - idealMaxWeight).toFixed(1)} كجم`;
+            idealDiffText = `تحتاج لخسارة ${(weightNum - idealMiddleWeight).toFixed(1)} كجم للوصول للوزن المثالي`;
+            markerPosition = 98;
         }
 
+        // تحديث العناصر المرئية
         document.getElementById("st").textContent = حالة;
         document.getElementById("idealDiffText").textContent = idealDiffText;
         body.style.background = backgroundGradient;
+        
+        // تحديث موقع مؤشر الوزن الحالي
+        document.getElementById("current-marker").style.left = `${markerPosition}%`;
     }
 
+    // معالجة المدخلات لتحويل الأرقام العربية إلى إنجليزية
+    function handleInputChange(e) {
+        const input = e.target;
+        const value = input.value;
+        
+        // تحويل الأرقام العربية إلى إنجليزية
+        const englishNumbers = convertArabicToEnglishNumbers(value);
+        
+        // إذا كان هناك تغيير، تحديث القيمة
+        if (englishNumbers !== value) {
+            input.value = englishNumbers;
+        }
+    }
+
+    // إضافة معالجات الأحداث للمدخلات
+    document.getElementById("white").addEventListener("input", handleInputChange);
+    document.getElementById("height").addEventListener("input", handleInputChange);
+
+    // مراقبة زر تبديل وحدة الطول
+    document.getElementById("unit-toggle").addEventListener("change", function() {
+        isHeightInMeters = this.checked;
+        const heightInput = document.getElementById("height");
+        const heightValue = parseFloat(heightInput.value);
+        
+        // تحويل القيمة المدخلة إذا كانت صالحة
+        if (!isNaN(heightValue) && heightValue > 0) {
+            if (isHeightInMeters && heightValue > 3) {
+                // تحويل من سم إلى متر
+                heightInput.value = (heightValue / 100).toFixed(2);
+            } else if (!isHeightInMeters && heightValue < 3) {
+                // تحويل من متر إلى سم
+                heightInput.value = Math.round(heightValue * 100);
+            }
+        }
+        
+        // تغيير نص placeholder حسب الوحدة
+        heightInput.placeholder = isHeightInMeters ? "أدخل الطول بالمتر" : "أدخل الطول بالسنتيمتر";
+    });
+
     document.getElementById("btn").addEventListener("click", calculateBMI);
+    
+    // معالجة ضغط مفتاح Enter لتشغيل الحساب
+    document.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            calculateBMI();
+        }
+    });
     </script>
 </body>
 </html>
