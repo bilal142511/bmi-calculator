@@ -47,7 +47,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            /* overflow: hidden; */
         }
 
         #cont {
@@ -60,7 +60,7 @@
             text-align: center;
             transition: all 0.3s ease;
             overflow: hidden;
-            max-height: 700px;
+            max-height: 90vh;
         }
 
         #titel {
@@ -163,11 +163,13 @@
         }
 
         @media screen and (max-width: 600px) {
+
             #cont {
                 width: 85%;
                 padding: 20px;
-                max-height: 800px;
-                height: 80%;
+                max-height: 93vh; /* الحفاظ على التناسب مع الشاشة */
+                min-height: auto; /* السماح للحاوية بالتمدد حسب المحتوى */
+                margin-bottom: 10px;
             }
 
             #woh {
@@ -177,8 +179,34 @@
             .in {
                 margin-bottom: 15px;
                 width: 85%;
+                font-size: 0.9rem; /* تصغير حجم الخط */
             }
-        }
+
+            #titel {
+                font-size: 1.5rem; /* تصغير حجم العنوان */
+            }
+
+            #btn {
+                position: relative;
+                top: -10px;
+                font-size: 0.9rem; /* تصغير حجم الزر */
+                padding: 10px 20px;
+            }
+
+            #contnv.show {
+                padding: 15px;
+                font-size: 0.9rem; /* تصغير حجم الخط في النتائج */
+            }
+
+            #wnum, #idealDiff {
+                font-size: 1rem; /* تصغير الأرقام الكبيرة */
+            }
+            #contnv{
+                transform: scale(0.85);
+                position: relative;
+                top: -25px;
+            }
+                }
     </style>
 </head>
 <body>
